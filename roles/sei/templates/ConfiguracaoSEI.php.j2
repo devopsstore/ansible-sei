@@ -18,14 +18,14 @@ class ConfiguracaoSEI extends InfraConfiguracao  {
  	          'URL' => 'http://{{ sei.url }}/sei',
  	          'Producao' => {{ sei.producao }},
  	          'RepositorioArquivos' => '{{ sei.repositorio_arquivos }}'),
-{% endif %}
+{% endfor %}
 
 {% for sei in sei_pagina %}
  	      'PaginaSEI' => array(
  	          'NomeSistema' => '{{ sei.nome_sistema }}',
  	          'NomeSistemaComplemento' => '{{ sei.sistema_completo }}',
  	          'LogoMenu' => '{{ sei.logo_menu }}'),
-{% endif %}
+{% endfor %}
 {% for sei in sei_sessao %}
  	      'SessaoSEI' => array(
  	          'SiglaOrgaoSistema' => '{{ sei.sigla_orgao_sistema }}',
@@ -33,7 +33,7 @@ class ConfiguracaoSEI extends InfraConfiguracao  {
  	          'PaginaLogin' => '{{ sei.pagina_login }}',
  	          'SipWsdl' => '{{ sei.sip_wsdl }}',
  	          'https' => {{ sei.https }}),
-{% endif %}
+{% endfor %}
 {% for sei in sei_banco %}
  	      'BancoSEI'  => array(
  	          'Servidor' => '{{ sei.servidor }}',
@@ -42,14 +42,14 @@ class ConfiguracaoSEI extends InfraConfiguracao  {
  	          'Usuario' => '{{ sei.usuario }}',
  	          'Senha' => '{{ sei.senha }}',
  	          'Tipo' => '{{ sei.tipo }}'), //MySql, SqlServer ou Oracle
-{% endif %}
+{% endfor %}
 {% for sei in sei_cache %}
 				'CacheSEI' => array('Servidor' => '{{ sei.servidor }}',
 					                	'Porta' => '{{ sei.porta }}'),
-{% endif %}
+{% endfor %}
 {% for sei in sei_jodconverter %}
  	      'JODConverter' => array('Servidor' => 'http://{{ sei.servidor }}:{{ sei.porta }}/converter/service'),
-{% endif %}
+{% endfor %}
  	      'Edoc' => array('Servidor' => 'http://[Servidor .NET]'),
 {% for sei in sei_solr %}
  	      'Solr' => array(
@@ -57,7 +57,7 @@ class ConfiguracaoSEI extends InfraConfiguracao  {
  	          'CoreProtocolos' => 'sei-protocolos',
  	          'CoreBasesConhecimento' => 'sei-bases-conhecimento',
  	          'CorePublicacoes' => 'sei-publicacoes'),
-{% endif %}
+{% endfor %}
 				'HostWebService' => array(
 						'Edoc' => array('[Servidor .NET]'),
 						'Sip' => array('*'), //Refer�ncias (IP e nome na rede) de todas as m�quinas que executam o SIP.
@@ -78,7 +78,7 @@ class ConfiguracaoSEI extends InfraConfiguracao  {
 						'Senha' => '{{ sei.senha }}',
 						'Protegido' => '{{ sei.protegido }}' //campo usado em desenvolvimento, se tiver um email preenchido entao todos os emails enviados terao o destinatario ignorado e substitu�do por este valor (evita envio incorreto de email)
 				)
-{% endif %}
+{% endfor %}
  	  );
  	}
 }

@@ -16,10 +16,10 @@ class ConfiguracaoSip extends InfraConfiguracao  {
  	      'Sip' => array(
  	          'URL' => 'http://{{ sip.url }}/sip',
  	          'Producao' => {{ sip.producao }}),
-{% endif %}
+{% endfor %}
 {% for sip in sip_pagina %}
  	      'PaginaSip' => array('NomeSistema' => '{{ sip.url }}'),
-{% endif %}
+{% endfor %}
 {% for sip in sip_pagina %}
  	      'SessaoSip' => array(
  	          'SiglaOrgaoSistema' => '{{ sip.sigla_orgao_sistema }}',
@@ -27,7 +27,7 @@ class ConfiguracaoSip extends InfraConfiguracao  {
  	          'PaginaLogin' => '{{ sip.pagina_login }}',
  	          'SipWsdl' => '{{ sip.sip_wsdl }}',
  	          'https' => {{ sip.https }}),
-{% endif %}
+{% endfor %}
 {% for sip in sip_banco %}
  	      'BancoSip'  => array(
  	          'Servidor' => '{{ sip.servidor }}',
@@ -36,16 +36,16 @@ class ConfiguracaoSip extends InfraConfiguracao  {
  	          'Usuario' => '{{ sip.usuario }}',
  	          'Senha' => '{{ sip.senha }}',
  	          'Tipo' => '{{ sip.tipo }}'), //MySql, SqlServer ou Oracle
-{% endif %}
+{% endfor %}
 {% for sip in sip_cache %}
 				'CacheSip' => array('Servidor' => '{{ sip.servidor }}',
 						                'Porta' => '{{ sip.porta }}'),
-{% endif %}
+{% endfor %}
  	      'HostWebService' => array(
  	          'Replicacao' => array('*'), //endere�o ou IP da m�quina que implementa o servi�o de replica��o de usu�rios
  	          'Pesquisa' => array('*'), //endere�os/IPs das m�quinas do SEI
  	          'Autenticacao' => array('*')), //endere�os/IPs das m�quinas do SEI
-{% endif %}
+{% endfor %}
 {% for sip in sip_infra_mail %}
 				'InfraMail' => array(
 						'Tipo' => '{{ sip.tipo }}', //1 = sendmail (neste caso n�o � necess�rio configurar os atributos abaixo), 2 = SMTP
@@ -60,7 +60,7 @@ class ConfiguracaoSip extends InfraConfiguracao  {
 						'Senha' => '{{ sip.senha }}',
 						'Protegido' => '{{ sip.protegido }}' //campo usado em desenvolvimento, se tiver um email preenchido entao todos os emails enviados terao o destinatario ignorado e substitu�do por este valor (evita envio incorreto de email)
 				)
-{% endif %}
+{% endfor %}
  	  );
  	}
 }
