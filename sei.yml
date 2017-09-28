@@ -1,14 +1,11 @@
 ---
-- hosts: jodconverter
+- hosts: webserver
   become: true
   roles:
     - role: sei
 
-
-
   vars:
-    source: "/etc/ansible/projects/sei/sources"
-    dfasf
+    source: "/etc/ansible/projects/ansible-sei/sources"
 
   tasks:
   - name: Install SEI v3.0.0
@@ -18,23 +15,19 @@
       owner: apache
       group: apache
 
+  - name: Install HELP SEI v3.0.0
+    unarchive:
+      src: "{{ source }}/sei/ajuda.zip"
+      dest: "/var/www/html/sei/web"
+      owner: apache
+      group: apache
+
   - name: Upgrade SEI v3.0.6
     unarchive:
       src: "{{ source }}/sei/v3.0.6.zip"
       dest: "/var/www/html"
       owner: apache
       group: apache
-
-  - name: Copy tomcat file service
-    copy:
-      src: "{{ source }}/jodconverter/tomcat"
-      dest: "/etc/init.d"
-      owner: root
-      group: root
-      mode: u=rwx,g=r,o=r
-
-  - name: Config Tomcat service
-    service: name=tomcat state=started enabled=yes
 
   environment:
     http_proxy: "http://proxy.mj.gov.br:3128"
