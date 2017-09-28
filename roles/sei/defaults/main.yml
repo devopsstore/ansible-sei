@@ -53,7 +53,7 @@ sei_infra_mail:
 # SIP Variables
 sip_sip:
   - url: "localhost"
-  - producao: true
+  - producao: "true"
 
 sip_pagina:
   - nome_sistema: "SIP"
