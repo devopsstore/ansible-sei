@@ -77,7 +77,7 @@ sip_cache:
   - servidor: "localhost"
   - porta: "11211"
 
-sei_infra_mail:
+sip_infra_mail:
   - tipo: "1"
   - servidor: "localhost"
   - porta: "25"
