@@ -18,7 +18,7 @@ class ConfiguracaoSip extends InfraConfiguracao  {
  	          'Producao' => {{ sip.producao }}),
 {% endfor %}
 {% for sip in sip_pagina %}
- 	      'PaginaSip' => array('NomeSistema' => '{{ sip.url }}'),
+ 	      'PaginaSip' => array('NomeSistema' => '{{ sip.nome_sistema }}'),
 {% endfor %}
 {% for sip in sip_sessao %}
  	      'SessaoSip' => array(
