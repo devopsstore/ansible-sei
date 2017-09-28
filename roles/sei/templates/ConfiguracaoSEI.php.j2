@@ -13,35 +13,37 @@ class ConfiguracaoSEI extends InfraConfiguracao  {
 
  	public function getArrConfiguracoes(){
  	  return array(
-{% for sei in sei_sei %}
+{% for sei_sei in sei_sei %}
  	      'SEI' => array(
- 	          'URL' => 'http://{{ sei.url }}/sei',
- 	          'Producao' => {{ sei.producao }},
- 	          'RepositorioArquivos' => '{{ sei.repositorio_arquivos }}'),
+ 	          'URL' => 'http://{{ sei_sei.url }}/sei',
+ 	          'Producao' => {{ sei_sei.producao }},
+ 	          'RepositorioArquivos' => '{{ sei_sei.repositorio_arquivos }}'),
 {% endfor %}
 
-{% for sei in sei_pagina %}
+{% for sei_pagina in sei_pagina %}
  	      'PaginaSEI' => array(
- 	          'NomeSistema' => '{{ sei.nome_sistema }}',
- 	          'NomeSistemaComplemento' => '{{ sei.sistema_completo }}',
- 	          'LogoMenu' => '{{ sei.logo_menu }}'),
+ 	          'NomeSistema' => '{{ sei_pagina.nome_sistema }}',
+ 	          'NomeSistemaComplemento' => '{{ sei_pagina.sistema_completo }}',
+ 	          'LogoMenu' => '{{ sei_pagina.logo_menu }}'),
 {% endfor %}
-{% for sei in sei_sessao %}
+{% for sei_sessao in sei_sessao %}
  	      'SessaoSEI' => array(
- 	          'SiglaOrgaoSistema' => '{{ sei.sigla_orgao_sistema }}',
- 	          'SiglaSistema' => '{{ sei.sigla_sistema }}',
+ 	          'SiglaOrgaoSistema' => '{{ sei_sessao.sigla_orgao_sistema }}',
+ 	          'SiglaSistema' => '{{ sei_sessao.sigla_sistema }}',
+            {% for sei_sei in sei_sei %}
  	          'PaginaLogin' => 'http://{{ sei_sei.url }}/sip/login.php',
  	          'SipWsdl' => 'http://{{ sei_sei.url }}/sip/controlador_ws.php?servico=wsdl',
- 	          'https' => {{ sei.https }}),
+            {% endfor %}
+ 	          'https' => {{ sei_sessao.https }}),
 {% endfor %}
-{% for sei in sei_banco %}
+{% for sei_banco in sei_banco %}
  	      'BancoSEI'  => array(
- 	          'Servidor' => '{{ sei.servidor }}',
- 	          'Porta' => '{{ sei.porta }}',
- 	          'Banco' => '{{ sei.banco }}',
- 	          'Usuario' => '{{ sei.usuario }}',
- 	          'Senha' => '{{ sei.senha }}',
- 	          'Tipo' => '{{ sei.tipo }}'), //MySql, SqlServer ou Oracle
+ 	          'Servidor' => '{{ sei_banco.servidor }}',
+ 	          'Porta' => '{{ sei_banco.porta }}',
+ 	          'Banco' => '{{ sei_banco.banco }}',
+ 	          'Usuario' => '{{ sei_banco.usuario }}',
+ 	          'Senha' => '{{ sei_banco.senha }}',
+ 	          'Tipo' => '{{ sei_banco.tipo }}'), //MySql, SqlServer ou Oracle
 {% endfor %}
 {% for sei in sei_cache %}
 				'CacheSEI' => array('Servidor' => '{{ sei.servidor }}',
