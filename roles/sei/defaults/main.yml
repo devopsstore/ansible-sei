@@ -1,20 +1,17 @@
 ---
 # SEI Variables
-sei_sei: []
-  - name: ""
-    url: "localhost"
+sei_sei:
+  - url: "localhost"
     producao: true
     repositorio_arquivos: "/var/www/html/dados"
 
-sei_pagina: []
-  - name: ""
-    nome_sistema: "SEI"
+sei_pagina:
+  - nome_sistema: "SEI"
     sistema_completo: ""
     logo_menu: ""
 
-sei_sessao: []
-  - name: ""
-    sigla_orgao_sistema: "ABC"
+sei_sessao:
+  - sigla_orgao_sistema: "ABC"
     sigla_sistema: "SEI"
     pagina_login: "http://{{ sei.url }}/sip/login.php"
     sip_wsdl: "http://{{ sei.url }}/sip/controlador_ws.php?servico=wsdl"
