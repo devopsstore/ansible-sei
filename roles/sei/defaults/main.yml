@@ -2,8 +2,8 @@
 # SEI Variables
 sei_sei:
   - url: "localhost"
-  - producao: "true"
-  - repositorio_arquivos: "/var/www/html/dados"
+    producao: "true"
+    repositorio_arquivos: "/var/www/html/dados"
 
 sei_pagina:
   - nome_sistema: "SEI"
