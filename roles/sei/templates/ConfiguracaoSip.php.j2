@@ -24,8 +24,8 @@ class ConfiguracaoSip extends InfraConfiguracao  {
  	      'SessaoSip' => array(
  	          'SiglaOrgaoSistema' => '{{ sip.sigla_orgao_sistema }}',
  	          'SiglaSistema' => '{{ sip.sigla_sistema }}',
- 	          'PaginaLogin' => '{{ sip.pagina_login }}',
- 	          'SipWsdl' => '{{ sip.sip_wsdl }}',
+            'PaginaLogin' => 'http://{{ sip_sip.url }}/sip/login.php',
+ 	          'SipWsdl' => 'http://{{ sip_sip.url }}/sip/controlador_ws.php?servico=wsdl',
  	          'https' => {{ sip.https }}),
 {% endfor %}
 {% for sip in sip_banco %}

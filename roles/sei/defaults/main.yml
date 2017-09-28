@@ -13,8 +13,6 @@ sei_pagina:
 sei_sessao:
   - sigla_orgao_sistema: "ABC"
     sigla_sistema: "SEI"
-    pagina_login: "http://localhost/sip/login.php"
-    sip_wsdl: "http://localhost/sip/controlador_ws.php?servico=wsdl"
     https: false
 
 sei_banco:
@@ -61,8 +59,6 @@ sip_pagina:
 sip_sessao:
   - sigla_orgao_sistema: "ABC"
     sigla_sistema: "SIP"
-    pagina_login: "http://localhost/sip/login.php"
-    sip_wsdl: "http://localhost/sip/controlador_ws.php?servico=wsdl"
     https: false
 
 sip_banco:

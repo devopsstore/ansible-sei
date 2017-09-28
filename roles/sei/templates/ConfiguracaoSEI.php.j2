@@ -30,8 +30,8 @@ class ConfiguracaoSEI extends InfraConfiguracao  {
  	      'SessaoSEI' => array(
  	          'SiglaOrgaoSistema' => '{{ sei.sigla_orgao_sistema }}',
  	          'SiglaSistema' => '{{ sei.sigla_sistema }}',
- 	          'PaginaLogin' => '{{ sei.pagina_login }}',
- 	          'SipWsdl' => '{{ sei.sip_wsdl }}',
+ 	          'PaginaLogin' => 'http://{{ sei_sei.url }}/sip/login.php',
+ 	          'SipWsdl' => 'http://{{ sei_sei.url }}/sip/controlador_ws.php?servico=wsdl',
  	          'https' => {{ sei.https }}),
 {% endfor %}
 {% for sei in sei_banco %}
