@@ -20,7 +20,7 @@ class ConfiguracaoSip extends InfraConfiguracao  {
 {% for sip in sip_pagina %}
  	      'PaginaSip' => array('NomeSistema' => '{{ sip.url }}'),
 {% endfor %}
-{% for sip in sip_pagina %}
+{% for sip in sip_sessao %}
  	      'SessaoSip' => array(
  	          'SiglaOrgaoSistema' => '{{ sip.sigla_orgao_sistema }}',
  	          'SiglaSistema' => '{{ sip.sigla_sistema }}',
