@@ -1,5 +1,26 @@
 ---
 # SEI Config
+- name: Install SEI v3.0.0
+  unarchive:
+    src: "{{ source }}/sei/v3.0.0.zip"
+    dest: "/var/www/html"
+    owner: apache
+    group: apache
+
+- name: Install HELP SEI v3.0.0
+  unarchive:
+    src: "{{ source }}/sei/ajuda.zip"
+    dest: "/var/www/html/sei/web"
+    owner: apache
+    group: apache
+
+- name: Upgrade SEI v3.0.6
+  unarchive:
+    src: "{{ source }}/sei/v3.0.6.zip"
+    dest: "/var/www/html"
+    owner: apache
+    group: apache
+
 - name: Include SEI variables.
   include_vars: sei.yml
 

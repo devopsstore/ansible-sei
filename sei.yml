@@ -7,28 +7,6 @@
   vars:
     source: "/etc/ansible/projects/ansible-sei/sources"
 
-  tasks:
-  - name: Install SEI v3.0.0
-    unarchive:
-      src: "{{ source }}/sei/v3.0.0.zip"
-      dest: "/var/www/html"
-      owner: apache
-      group: apache
-
-  - name: Install HELP SEI v3.0.0
-    unarchive:
-      src: "{{ source }}/sei/ajuda.zip"
-      dest: "/var/www/html/sei/web"
-      owner: apache
-      group: apache
-
-  - name: Upgrade SEI v3.0.6
-    unarchive:
-      src: "{{ source }}/sei/v3.0.6.zip"
-      dest: "/var/www/html"
-      owner: apache
-      group: apache
-
   environment:
     http_proxy: "http://proxy.mj.gov.br:3128"
     https_proxy: "http://proxy.mj.gov.br:3128"
