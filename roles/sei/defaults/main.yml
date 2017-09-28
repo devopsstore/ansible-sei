@@ -1,21 +1,21 @@
 ---
 # SEI Variables
 sei_sei:
-  - url: "localhost"
-    producao: true
-    repositorio_arquivos: "/var/www/html/dados"
+  url: "localhost"
+  producao: true
+  repositorio_arquivos: "/var/www/html/dados"
 
 sei_pagina:
-  - nome_sistema: "SEI"
-    sistema_completo: ""
-    logo_menu: ""
+  nome_sistema: "SEI"
+  sistema_completo: ""
+  logo_menu: ""
 
 sei_sessao:
-  - sigla_orgao_sistema: "ABC"
-    sigla_sistema: "SEI"
-    pagina_login: "http://{{ sei.url }}/sip/login.php"
-    sip_wsdl: "http://{{ sei.url }}/sip/controlador_ws.php?servico=wsdl"
-    https: false
+  sigla_orgao_sistema: "ABC"
+  sigla_sistema: "SEI"
+  pagina_login: "http://localhost/sip/login.php"
+  sip_wsdl: "http://localhost/sip/controlador_ws.php?servico=wsdl"
+  https: false
 
 sei_banco:
   servidor: "localhost"
@@ -61,8 +61,8 @@ sip_pagina:
 sip_sessao:
   sigla_orgao_sistema: "ABC"
   sigla_sistema: "SIP"
-  pagina_login: "http://{{ sei.url }}/sip/login.php"
-  sip_wsdl: "http://{{ sei.url }}/sip/controlador_ws.php?servico=wsdl"
+  pagina_login: "http://localhost/sip/login.php"
+  sip_wsdl: "http://localhost/sip/controlador_ws.php?servico=wsdl"
   https: false
 
 sip_banco:
