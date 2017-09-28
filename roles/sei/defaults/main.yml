@@ -1,16 +1,16 @@
 ---
 # SEI Variables
-sei_sei:
+sei_sei: []
   url: "localhost"
   producao: true
   repositorio_arquivos: "/var/www/html/dados"
 
-sei_pagina:
+sei_pagina: []
   nome_sistema: "SEI"
   sistema_completo: ""
   logo_menu: ""
 
-sei_sessao:
+sei_sessao: []
   sigla_orgao_sistema: "ABC"
   sigla_sistema: "SEI"
   pagina_login: "http://{{ sei.url }}/sip/login.php"
