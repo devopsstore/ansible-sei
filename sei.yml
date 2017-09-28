@@ -3,11 +3,12 @@
   become: true
   roles:
     - role: sei
-    
+
 
 
   vars:
     source: "/etc/ansible/projects/sei/sources"
+    dfasf
 
   tasks:
   - name: Install SEI v3.0.0
