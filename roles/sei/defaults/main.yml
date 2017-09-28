@@ -1,0 +1,91 @@
+---
+# SEI Variables
+sei_sei:
+  - url: "localhost"
+  - producao: true
+  - repositorio_arquivos: "/var/www/html/dados"
+
+sei_pagina:
+  - nome_sistema: "SEI"
+  - sistema_completo: ""
+  - logo_menu: ""
+
+sei_sessao:
+  - sigla_orgao_sistema: "ABC"
+  - sigla_sistema: "SEI"
+  - pagina_login: "http://{{ sei.url }}/sip/login.php"
+  - sip_wsdl: "http://{{ sei.url }}/sip/controlador_ws.php?servico=wsdl"
+  - https: false
+
+sei_banco:
+  - servidor: "localhost"
+  - porta: "3306"
+  - banco: "sei"
+  - usuario: "sei"
+  - senha: "sei"
+  - tipo: "MySQL"
+
+sei_cache:
+  - servidor: "localhost"
+  - porta: "11211"
+
+sei_jodconverter:
+  - servidor: "localhost"
+  - porta: "8080"
+
+sei_solr:
+  - servidor: "localhost"
+  - porta: "8389"
+
+sei_infra_mail:
+  - tipo: "1"
+  - servidor: "localhost"
+  - porta: "25"
+  - codificacao: "8bit"
+  - max_destinatarios: 999
+  - max_tamanexo_mb: 999
+  - seguranca: "TLS"
+  - autenticar: false
+  - usuario: "aaa"
+  - senha: "aaa"
+  - protegido: ""
+
+# SIP Variables
+sip_sip:
+  - url: "localhost"
+  - producao: true
+
+sip_pagina:
+  - nome_sistema: "SIP"
+
+sip_sessao:
+  - sigla_orgao_sistema: "ABC"
+  - sigla_sistema: "SIP"
+  - pagina_login: "http://{{ sei.url }}/sip/login.php"
+  - sip_wsdl: "http://{{ sei.url }}/sip/controlador_ws.php?servico=wsdl"
+  - https: false
+
+sip_banco:
+  - servidor: "localhost"
+  - porta: "3306"
+  - banco: "sei"
+  - usuario: "sei"
+  - senha: "sei"
+  - tipo: "MySQL"
+
+sip_cache:
+  - servidor: "localhost"
+  - porta: "11211"
+
+sei_infra_mail:
+  - tipo: "1"
+  - servidor: "localhost"
+  - porta: "25"
+  - codificacao: "8bit"
+  - max_destinatarios: 999
+  - max_tamanexo_mb: 999
+  - seguranca: "TLS"
+  - autenticar: false
+  - usuario: "aaa"
+  - senha: "aaa"
+  - protegido: ""

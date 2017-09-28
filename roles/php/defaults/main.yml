@@ -1,0 +1,97 @@
+---
+
+# Remove any php version before install (true | false)
+remove_php: false
+
+# Update php every time you run this role (present | latest)
+yum_state: latest
+
+# Define if you are using a web server (true | false)
+php_webserver: true
+
+# Define your web server (httpd | nginx)
+webserver: httpd
+
+# Select php version (php | php55 | php56 | php70 | php71)
+#
+#    | package name | version | base | ius | webtatic | remi |
+#    | -            | -       | -    | -   | -        | -    |
+#    |php           | 5.4.x   | ok   |     |          | ok   |
+#    |php55         | 5.5.x   |      | ok  | ok       | ok   |
+#    |php56         | 5.6.x   |      | ok  | ok       | ok   |
+#    |php70         | 7.0.x   |      | ok  | ok       | ok   |
+#    |php71         | 7.1.x   |      |     |          | ok   |
+#
+# Be extra careful when you choose php version.
+# Not every repository have the corresponding php version. Check the table above.
+php_version: php56
+
+# EPEL only provides software not in the CentOS and RHEL official repositories, IUS and Remi provide newer versions of software already in the official repositories (like MySQL and PHP).
+
+# The IUS repository provides newer versions of software in the official CentOS and RHEL repositories. The IUS repository depends on the EPEL repository.
+# Package names in the IUS repository are not the same as the package names used in the official repositories. This helps avoid unintentional conflicts or software version updates.
+# Note: Because IUS uses different package names from the official repositories, IUS is recommended over Remi
+
+# The Remi repository provides newer versions of software in the core CentOS and RHEL repositories. The Remi repository depends on the EPEL repository.
+# Package names in the Remi repository are the same as the package names used in the official repositories. This can result in inadvertent package upgrades when running an update with yum, so use the Remi repository with care.
+# Note: Because Remi uses the same package names as the official repositories, Remi is not recommended
+# Info: remi wizard: http://rpms.remirepo.net/wizard/
+
+# Choose repository (base | ius | webtatic | remi)
+#
+# ius and remi needs epel repo, epel will be installed automatically if you choose one of these two.
+# If you are using php (php 5.4) use the base repo, otherwise I suggest the isu repository.
+repository: ius
+
+# Add or remove php modules (do not include php itself)
+php_modules:
+  - cli
+  - common
+  - devel
+  - fpm
+  - gd
+  - ldap
+  - mbstring
+  - mcrypt
+  - mysqlnd
+  - opcache
+  - pdo
+  - pear
+  - pecl-uploadprogress
+  - process
+  - xml
+
+# Create CUSTOM.php.ini (true | false)
+create_custom_php_ini: true
+
+# Give the name you want for the CUSTOM.php.ini (string)
+#
+# Edit the php custom configuration in the `templates/custom.php.ini.tpl`
+custom_php_ini: custom
+
+# Create DOMAIN/phpinfo.php test page (true | false)
+create_phpinfo: true
+
+# Web server folder (string, followed by '/')
+webserver_folder: /var/www/html/
+
+# Repository list. Do not change.
+repo_list:
+  - name: "base"
+    repo_package: ""
+    repo_gpg_key_url: ""
+
+  - name: "ius"
+    repo_package: "https://centos7.iuscommunity.org/ius-release.rpm"
+    #repo_package: "ius-release"
+    repo_gpg_key_url: "/etc/pki/rpm-gpg/IUS-COMMUNITY-GPG-KEY"
+
+  - name: "remi"
+    repo_package: "http://rpms.remirepo.net/enterprise/remi-release-7.rpm"
+    #repo_package: "remi-release"
+    repo_gpg_key_url: "/etc/pki/rpm-gpg/RPM-GPG-KEY-remi"
+
+  - name: "webtatic"
+    repo_package: "https://mirror.webtatic.com/yum/el7/webtatic-release.rpm"
+    #repo_package: "webtatic-release"
+    repo_gpg_key_url: "/etc/pki/rpm-gpg/RPM-GPG-KEY-webtatic-el7"

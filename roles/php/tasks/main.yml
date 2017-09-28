@@ -1,0 +1,110 @@
+---
+# tasks file for ansible-role-php
+
+- name: Remove any php version
+  become: yes
+  yum:
+    name: php*
+    state: removed
+  when: remove_php
+  notify: restart webserver
+
+- name: Install "{{ repository }}" repo
+  yum:
+    name: "{{ item.repo_package }}"
+    state: present
+  with_items: "{{ repo_list }}"
+  when: item.name  == "{{ repository }}" and item.repo_gpg_key_url != ""
+
+- name: Import "{{ repository }}" GPG key
+  rpm_key:
+    key: "{{ item.repo_gpg_key_url }}"
+    state: present
+  with_items: "{{ repo_list }}"
+  when: item.name  == "{{ repository }}" and item.repo_gpg_key_url != ""
+
+# Set variables for every repository
+# TODO: find a better way, this data should be in the defaults/main.yml in an array
+- set_fact:
+    php_repo_sufix: ""
+  when: repository == "base"
+
+- set_fact:
+    php_repo_sufix: "u"
+  when: repository == "ius"
+
+# remi doesn't need php_repo_sufix because it uses the default names.
+- set_fact:
+    php_repo_sufix: ""
+  when: repository == "remi"
+
+- set_fact:
+    php_repo_sufix: "w"
+  when: repository == "webtatic"
+
+# php install task for remi repo only. `Unsafe Repositories`
+# More info: https://ius.io/SafeRepo/#unsafe-package-types
+- name: Install {{ php_version }} using "remi-{{ php_version }}" repo
+  become: yes
+  yum:
+    pkg: "php"
+    state: "{{ yum_state }}"
+    enablerepo: "{{ repository }}-{{ php_version }}"
+  when: ansible_os_family == "RedHat" and repository == "remi"
+  notify: restart webserver
+
+# php module install task for remi repo only. `Unsafe Repositories`
+# More info: https://ius.io/SafeRepo/#unsafe-package-types
+- name: Install {{ php_version }} modules using "remi-{{ php_version }}" repo
+  become: yes
+  yum:
+    pkg: "php-{{ item }}"
+    state: "{{ yum_state }}"
+    enablerepo: "{{ repository }}-{{ php_version }}"
+  with_items: "{{ php_modules }}"
+  when: ansible_os_family == "RedHat" and repository == "remi"
+  notify: restart webserver
+
+# php install task for all other repos. `Safe Repositories`
+# More info: https://ius.io/SafeRepo/#safe-package-types
+- name: Install {{ php_version }} using "{{ repository }}" repo
+  become: yes
+  yum:
+    pkg: "{{ php_version }}{{ php_repo_sufix }}"
+    state: "{{ yum_state }}"
+    enablerepo: "{{ repository }}"
+  when: ansible_os_family == "RedHat" and repository != "remi"
+  notify: restart webserver
+
+# php module install task for all other repos. `Safe Repositories`
+# More info: https://ius.io/SafeRepo/#safe-package-types
+- name: Install {{ php_version }} modules using "{{ repository }}" repo
+  become: yes
+  yum:
+    pkg: "{{ php_version }}{{ php_repo_sufix }}-{{ item }}"
+    state: "{{ yum_state }}"
+    enablerepo: "{{ repository }}"
+  with_items: "{{ php_modules }}"
+  when: ansible_os_family == "RedHat" and repository != "remi"
+  notify: restart webserver
+
+- name: Custom php.ini
+  become: yes
+  template:
+    src: custom.php.ini.tpl
+    dest: "/etc/php.d/{{ custom_php_ini }}.php.ini"
+    owner: root
+    group: root
+    mode: 0664
+  when: create_custom_php_ini
+  notify: restart webserver
+
+- name: Create test phpinfo.php
+  become: yes
+  template:
+    src: phpinfo.php.tpl
+    dest: "{{ webserver_folder }}phpinfo.php"
+    owner: root
+    group: root
+    mode: 0664
+  when: create_phpinfo

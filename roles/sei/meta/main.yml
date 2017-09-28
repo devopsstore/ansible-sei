@@ -1,0 +1,33 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: devopsstore
+  description: SEI and SIP config for Linux.
+  company: "devopsstore.com.br"
+  license: "GNU"
+  min_ansible_version: 2.2
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - precise
+        - raring
+        - saucy
+        - trusty
+        - xenial
+    - name: Suse
+      versions:
+        - all
+  galaxy_tags:
+    - web
+    - apache
+    - webserver
+    - html
+
+allow_duplicates: yes

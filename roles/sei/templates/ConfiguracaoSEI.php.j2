@@ -1,0 +1,85 @@
+<?
+
+class ConfiguracaoSEI extends InfraConfiguracao  {
+
+ 	private static $instance = null;
+
+ 	public static function getInstance(){
+ 	  if (ConfiguracaoSEI::$instance == null) {
+ 	    ConfiguracaoSEI::$instance = new ConfiguracaoSEI();
+ 	  }
+ 	  return ConfiguracaoSEI::$instance;
+ 	}
+
+ 	public function getArrConfiguracoes(){
+ 	  return array(
+{% for sei in sei_sei %}
+ 	      'SEI' => array(
+ 	          'URL' => 'http://{{ sei.url }}/sei',
+ 	          'Producao' => {{ sei.producao }},
+ 	          'RepositorioArquivos' => '{{ sei.repositorio_arquivos }}'),
+{% endif %}
+
+{% for sei in sei_pagina %}
+ 	      'PaginaSEI' => array(
+ 	          'NomeSistema' => '{{ sei.nome_sistema }}',
+ 	          'NomeSistemaComplemento' => '{{ sei.sistema_completo }}',
+ 	          'LogoMenu' => '{{ sei.logo_menu }}'),
+{% endif %}
+{% for sei in sei_sessao %}
+ 	      'SessaoSEI' => array(
+ 	          'SiglaOrgaoSistema' => '{{ sei.sigla_orgao_sistema }}',
+ 	          'SiglaSistema' => '{{ sei.sigla_sistema }}',
+ 	          'PaginaLogin' => '{{ sei.pagina_login }}',
+ 	          'SipWsdl' => '{{ sei.sip_wsdl }}',
+ 	          'https' => {{ sei.https }}),
+{% endif %}
+{% for sei in sei_banco %}
+ 	      'BancoSEI'  => array(
+ 	          'Servidor' => '{{ sei.servidor }}',
+ 	          'Porta' => '{{ sei.porta }}',
+ 	          'Banco' => '{{ sei.banco }}',
+ 	          'Usuario' => '{{ sei.usuario }}',
+ 	          'Senha' => '{{ sei.senha }}',
+ 	          'Tipo' => '{{ sei.tipo }}'), //MySql, SqlServer ou Oracle
+{% endif %}
+{% for sei in sei_cache %}
+				'CacheSEI' => array('Servidor' => '{{ sei.servidor }}',
+					                	'Porta' => '{{ sei.porta }}'),
+{% endif %}
+{% for sei in sei_jodconverter %}
+ 	      'JODConverter' => array('Servidor' => 'http://{{ sei.servidor }}:{{ sei.porta }}/converter/service'),
+{% endif %}
+ 	      'Edoc' => array('Servidor' => 'http://[Servidor .NET]'),
+{% for sei in sei_solr %}
+ 	      'Solr' => array(
+ 	          'Servidor' => 'http://{{ sei.servidor }}:{{ sei.porta }}/solr',
+ 	          'CoreProtocolos' => 'sei-protocolos',
+ 	          'CoreBasesConhecimento' => 'sei-bases-conhecimento',
+ 	          'CorePublicacoes' => 'sei-publicacoes'),
+{% endif %}
+				'HostWebService' => array(
+						'Edoc' => array('[Servidor .NET]'),
+						'Sip' => array('*'), //Refer�ncias (IP e nome na rede) de todas as m�quinas que executam o SIP.
+						'Publicacao' => array('*'), //Refer�ncias (IP e nome na rede) das m�quinas de ve�culos de publica��o externos cadastrados no SEI.
+						'Ouvidoria' => array('*'), //Refer�ncias (IP e nome na rede) da m�quina que hospeda o formul�rio de Ouvidoria personalizado. Se utilizar o formul�rio padr�o do SEI, ent�o configurar com as m�quinas dos n�s de aplica��o do SEI.
+				),
+{% for sei in sei_infra_mail %}
+ 	      'InfraMail' => array(
+						'Tipo' => '{{ sei.tipo }}', //1 = sendmail (neste caso n�o � necess�rio configurar os atributos abaixo), 2 = SMTP
+						'Servidor' => '{{ sei.servidor }}',
+						'Porta' => '{{ sei.porta }}',
+						'Codificacao' => '{{ sei.codificacao }}', //8bit, 7bit, binary, base64, quoted-printable
+						'MaxDestinatarios' => {{ sei.max_destinatarios }}, //numero maximo de destinatarios por mensagem
+						'MaxTamAnexosMb' => {{ sei.max_tamanexo_mb }}, //tamanho maximo dos anexos em Mb por mensagem
+						'Seguranca' => '{{ sei.seguranca }}', //TLS, SSL ou vazio
+						'Autenticar' => {{ sei.autenticar }}, //se true ent�o informar Usuario e Senha
+						'Usuario' => '{{ sei.usuario }}',
+						'Senha' => '{{ sei.senha }}',
+						'Protegido' => '{{ sei.protegido }}' //campo usado em desenvolvimento, se tiver um email preenchido entao todos os emails enviados terao o destinatario ignorado e substitu�do por este valor (evita envio incorreto de email)
+				)
+{% endif %}
+ 	  );
+ 	}
+}
+?>

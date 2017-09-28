@@ -1,0 +1,17 @@
+---
+- hosts: memcached
+  become: true
+  roles:
+    - role: memcached
+      memcached_user: memcached
+      memcached_port: 11211
+      memcached_listen_ip: 127.0.0.1
+      memcached_memory_limit: 64
+      memcached_connections: 1024
+      memcached_log_file: /var/log/memcached.log
+
+  environment:
+    http_proxy: "http://proxy.mj.gov.br:3128"
+    https_proxy: "http://proxy.mj.gov.br:3128"
+    ftp_proxy: "http://proxy.mj.gov.br:3128"
+    no_proxy: "localhost,127.0.0.1"

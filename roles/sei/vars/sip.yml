@@ -1,0 +1,3 @@
+sip_conf_path: "/var/www/html/sip/config"
+sip_configuracao_filename: "ConfiguracaoSIP.php"
+sip_configuracao_template: "ConfiguracaoSIP.php.j2"

@@ -1,0 +1,51 @@
+---
+- hosts: jodconverter
+  become: true
+  roles:
+    - role: java
+      when: "ansible_os_family == 'RedHat'"
+      java_packages:
+        - java-1.8.0-openjdk
+
+  vars:
+    source: "/etc/ansible/projects/sei/sources"
+
+  tasks:
+  - name: Install libreoffice package
+    yum: state=present name={{ item }}
+    with_items:
+      - libreoffice
+      - libreoffice-headless
+
+  - name: Copy libreoffice-headless file service
+    copy:
+      src: "{{ source }}/jodconverter/libreoffice-headless"
+      dest: "/etc/init.d"
+      owner: root
+      group: root
+      mode: u=rwx,g=r,o=r
+
+  - name: Config libreoffice-headless service
+    systemd: name=libreoffice-headless state=started enabled=yes
+
+  - name: Copy jodconverter
+    unarchive:
+      src: "{{ source }}/jodconverter/jodconverter-tomcat-2.2.2.zip"
+      dest: "/opt"
+
+  - name: Copy tomcat file service
+    copy:
+      src: "{{ source }}/jodconverter/tomcat"
+      dest: "/etc/init.d"
+      owner: root
+      group: root
+      mode: u=rwx,g=r,o=r
+
+  - name: Config Tomcat service
+    service: name=tomcat state=started enabled=yes
+
+  environment:
+    http_proxy: "http://proxy.mj.gov.br:3128"
+    https_proxy: "http://proxy.mj.gov.br:3128"
+    ftp_proxy: "http://proxy.mj.gov.br:3128"
+    no_proxy: "localhost,127.0.0.1"

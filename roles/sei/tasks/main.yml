@@ -1,0 +1,25 @@
+---
+# SEI Config
+- name: Include SEI variables.
+  include_vars: sei.yml"
+
+- name: Add SEI configuration.
+  template:
+    src: "{{ sei_configuracao_template }}"
+    dest: "{{ sei_conf_path }}/{{ sei_configuracao_filename }}"
+    owner: apache
+    group: apache
+    mode: 0644
+
+# SIP Config
+- name: Include SIP variables.
+  include_vars: sip.yml"
+
+- name: Add SEI configuration.
+  template:
+    src: "{{ sip_configuracao_template }}"
+    dest: "{{ sip_conf_path }}/{{ sip_configuracao_filename }}"
+    owner: apache
+    group: apache
+    mode: 0644
+  notify: restart apache
