@@ -1,7 +1,7 @@
 ---
 # SEI Config
 - name: Include SEI variables.
-  include_vars: sei.yml"
+  include_vars: sei.yml
 
 - name: Add SEI configuration.
   template:
@@ -13,7 +13,7 @@
 
 # SIP Config
 - name: Include SIP variables.
-  include_vars: sip.yml"
+  include_vars: sip.yml
 
 - name: Add SEI configuration.
   template:
