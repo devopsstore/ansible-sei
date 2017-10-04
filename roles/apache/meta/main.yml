@@ -2,10 +2,10 @@
 dependencies: []
 
 galaxy_info:
-  author: geerlingguy
+  author: devopsstore
   description: Apache 2.x for Linux.
-  company: "Midwestern Mac, LLC"
-  license: "license (BSD, MIT)"
+  company: "devopsstore.com.br"
+  license: "license (GNU)"
   min_ansible_version: 2.2
   platforms:
     - name: EL
@@ -34,6 +34,7 @@ galaxy_info:
     - web
     - apache
     - webserver
+    - httpd
     - html
 
 allow_duplicates: yes
