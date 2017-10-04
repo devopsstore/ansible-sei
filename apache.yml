@@ -8,11 +8,5 @@
       apache_listen_port: 81
 
       apache_vhosts:
-      - servername: "sei.mj.gov.br"
-        serveradmin: "admin@mj.gov.br"
-
-  environment:
-    http_proxy: "http://proxy.mj.gov.br:3128"
-    https_proxy: "http://proxy.mj.gov.br:3128"
-    ftp_proxy: "http://proxy.mj.gov.br:3128"
-    no_proxy: "localhost,127.0.0.1"
+      - servername: "sei.devopsstore.local"
+        serveradmin: "contato@devopsstore.com.br"

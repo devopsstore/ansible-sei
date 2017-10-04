@@ -1,17 +1,17 @@
 [nginx]
-10.10.12.109
+node
 
 [webserver]
-10.10.12.109
+node
 
 [memcached]
-10.10.12.109
+node
 
 [solr]
-10.10.12.109
+node
 
 [database]
-10.10.12.109
+node
 
 [jodconverter]
-10.10.12.109
+node

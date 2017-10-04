@@ -28,6 +28,7 @@ galaxy_info:
     - web
     - apache
     - webserver
+    - httpd
     - html
 
 allow_duplicates: yes

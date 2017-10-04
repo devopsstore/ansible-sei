@@ -1,0 +1,38 @@
+---
+# SIP Variables
+sip_sip:
+  - url: "localhost"
+    producao: "true"
+
+sip_pagina:
+  - nome_sistema: "SIP"
+
+sip_sessao:
+  - sigla_orgao_sistema: "ABC"
+    sigla_sistema: "SIP"
+    https: false
+
+sip_banco:
+  - servidor: "localhost"
+    porta: "3306"
+    banco: "sei"
+    usuario: "sei"
+    senha: "sei"
+    tipo: "MySQL"
+
+sip_cache:
+  - servidor: "localhost"
+    porta: "11211"
+
+sip_infra_mail:
+  - tipo: "1"
+    servidor: "localhost"
+    porta: "25"
+    codificacao: "8bit"
+    max_destinatarios: 999
+    max_tamanexo_mb: 999
+    seguranca: "TLS"
+    autenticar: false
+    usuario: "aaa"
+    senha: "aaa"
+    protegido: ""

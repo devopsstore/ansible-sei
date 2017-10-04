@@ -2,7 +2,7 @@
 # SEI Config
 - name: Install SEI v3.0.0
   unarchive:
-    src: "{{ source }}/sei/v3.0.0.zip"
+    src: "{{ source }}/sei/SEIv3.0.0.zip"
     dest: "/var/www/html"
     owner: apache
     group: apache
@@ -16,7 +16,7 @@
 
 - name: Upgrade SEI v3.0.6
   unarchive:
-    src: "{{ source }}/sei/v3.0.6.zip"
+    src: "{{ source }}/sei/SEIv3.0.6.zip"
     dest: "/var/www/html"
     owner: apache
     group: apache
@@ -31,16 +31,5 @@
     owner: apache
     group: apache
     mode: 0644
-
-# SIP Config
-- name: Include SIP variables.
-  include_vars: sip.yml
-
-- name: Add SEI configuration.
-  template:
-    src: "{{ sip_configuracao_template }}"
-    dest: "{{ sip_conf_path }}/{{ sip_configuracao_filename }}"
-    owner: apache
-    group: apache
-    mode: 0644
   notify: restart apache
+  

@@ -1,0 +1,4 @@
+---
+sei_conf_path: "/var/www/html/sei/config"
+sei_configuracao_filename: "ConfiguracaoSEI.php"
+sei_configuracao_template: "ConfiguracaoSEI.php.j2"
